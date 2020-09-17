@@ -10,10 +10,10 @@ const validate = values => {
         errors.id = `Select the ID of the post you want to update.`
     }
     if(!values.title){
-        errors.title = `Make a change in your post's title.`
+        errors.title = `Enter your post's title.`
     }
     if(!values.body){
-        errors.body = `Make a change in your post's body.`
+        errors.body = `Enter your post's body.`
     }
     return errors
 }
@@ -45,7 +45,6 @@ class EditPost extends React.Component{
             if(element.id === id){ 
                 post = element
                 this.setState({
-                    id: element.id,
                     title: element.title,
                     body: element.body,
                     postPosition: this.props.postsList.indexOf(element)
@@ -53,9 +52,11 @@ class EditPost extends React.Component{
             }
         })
         this.props.setActivePost(post)
+        this.handleChange(e)
     }
 
     handleChange = ({target})=>{
+        console.log(target.value)
         const{ name, value } = target
         this.setState({ [name]: value })
     }
@@ -63,9 +64,10 @@ class EditPost extends React.Component{
     handleSubmit = (e)=>{
         e.preventDefault();
         this.setState({send: false})
-        const { errors, postPosition, ...stateValues} = this.state;
+        const { errors, send, postPosition, ...stateValues} = this.state;
         const result = validate(stateValues);
         this.setState({ errors: result });
+        console.log(stateValues)
         
         if(!Object.keys(result).length){
             Axios.put(
@@ -90,8 +92,8 @@ class EditPost extends React.Component{
                 }
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
-                        <Form.Label>Select the ID of the post you want to edit.</Form.Label>
-                        <Form.Control as="select" name='id' onChange={this.handlePost} defaultValue={ this.props.activePost ? this.props.activePost.id : ''} className={`form-control ${!errors.id ? '' : 'is-invalid' } `}  >
+                        <Form.Label>ID</Form.Label>
+                        <Form.Control as="select" name='id' onChange={this.handlePost} defaultValue={ this.props.activePost ? this.props.activePost.id : ''} disabled={this.props.activePost ? true : false} className={`form-control ${!errors.id ? '' : 'is-invalid' } `}  >
                             <option></option>
                             {this.props.postsList.map( element =>  <option key={element.id}> {element.id} </option> )}
                         </Form.Control>
