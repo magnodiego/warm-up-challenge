@@ -6,14 +6,17 @@ import { NavLink } from 'react-router-dom';
 import actions from '../actions';
 
 class Post extends React.Component{
-    
+
     state = {
         isToggleOn: false
     }
 
     handleDelete = ()=>{
-        Axios.delete(`https://jsonplaceholder.typicode.com/posts/${this.props.element.id}`)
-        this.props.deletePost(this.props.element)
+        Axios.delete(
+            `https://jsonplaceholder.typicode.com/posts/${this.props.element.id}`
+        ).then((res)=>{
+            this.props.deletePost(this.props.element)
+        })
     }
 
     handleEdit = ()=>{
