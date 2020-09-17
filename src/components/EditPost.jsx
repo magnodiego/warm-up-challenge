@@ -26,12 +26,14 @@ class EditPost extends React.Component{
     }
 
     componentDidMount(){
+        console.log(this.props)
+
         try {
             this.setState({
-                id: this.props.activePost.id,
-                title: this.props.activePost.title,
-                body: this.props.activePost.body,
-                postPosition: this.props.postsList.indexOf(this.props.activePost)
+                id: this.props.editPost.id,
+                title: this.props.editPost.title,
+                body: this.props.editPost.body,
+                postPosition: this.props.postsList.indexOf(this.props.editPost)
             })
         } catch (error) {
             return    
@@ -51,7 +53,7 @@ class EditPost extends React.Component{
                 })
             }
         })
-        this.props.setActivePost(post)
+        this.props.setEditPost(post)
         this.handleChange(e)
     }
 
@@ -93,7 +95,7 @@ class EditPost extends React.Component{
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
                         <Form.Label>ID</Form.Label>
-                        <Form.Control as="select" name='id' onChange={this.handlePost} defaultValue={ this.props.activePost ? this.props.activePost.id : ''} disabled={this.props.activePost ? true : false} className={`form-control ${!errors.id ? '' : 'is-invalid' } `}  >
+                        <Form.Control as="select" name='id' onChange={this.handlePost} defaultValue={ this.props.editPost ? this.props.editPost.id : ''} disabled={this.props.editPost ? true : false} className={`form-control ${!errors.id ? '' : 'is-invalid' } `}  >
                             <option></option>
                             {this.props.postsList.map( element =>  <option key={element.id}> {element.id} </option> )}
                         </Form.Control>
@@ -101,12 +103,12 @@ class EditPost extends React.Component{
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className='mt-3'> Title </Form.Label>
-                        <Form.Control onChange={this.handleChange} type='text' name='title' defaultValue={ this.props.activePost ? this.props.activePost.title : ''} className={`form-control ${!errors.title ? '' : 'is-invalid' } `} />
+                        <Form.Control onChange={this.handleChange} type='text' name='title' defaultValue={ this.props.editPost ? this.props.editPost.title : ''} className={`form-control ${!errors.title ? '' : 'is-invalid' } `} />
                         {errors.title &&  <div className="invalid-feedback "> {errors.title} </div> }
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className='mt-3'> Body </Form.Label>
-                        <Form.Control as="textarea" rows="5" name='body' onChange={this.handleChange} defaultValue={ this.props.activePost ? this.props.activePost.body : ''} className={`form-control ${!errors.body ? '' : 'is-invalid' } `} />
+                        <Form.Control as="textarea" rows="5" name='body' onChange={this.handleChange} defaultValue={ this.props.editPost ? this.props.editPost.body : ''} className={`form-control ${!errors.body ? '' : 'is-invalid' } `} />
                         {errors.body &&  <div className="invalid-feedback "> {errors.body} </div> }
                     </Form.Group>
                     <Button variant="primary" type="submit">
@@ -119,20 +121,21 @@ class EditPost extends React.Component{
     }
 
     componentWillUnmount(){
-        this.props.setActivePost(null)
+        this.props.setEditPost(null)
+        console.log(this.props)
     }
 }
 
 function mapStateToProps(state){
     return {
         postsList: state.postsList,
-        activePost: state.activePost
+        editPost: state.editPost
     }
 }
 
 function mapDispatchToProps(dispatch){
     return {
-        setActivePost: (post) => dispatch(actions.setActivePostAction(post)),
+        setEditPost: (post) => dispatch(actions.setEditPostAction(post)),
         updatePost: (post, postPosition) => dispatch(actions.updatePostAction(post, postPosition))
     }
 }

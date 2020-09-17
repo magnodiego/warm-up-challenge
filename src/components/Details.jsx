@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React from 'react';
 import { Card, Container, Jumbotron } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import actions from '../actions';
 
 class Details extends React.Component {
     
@@ -13,7 +14,7 @@ class Details extends React.Component {
         this.setState({loading: true})
         Axios.get(`https://jsonplaceholder.typicode.com/posts/${this.state.id}`)
         .then((res)=>{
-            this.setState({post: res.data})
+            this.setState({post: this.props.detailsPost})
         })
         .catch((err)=>{
             this.setState({error: 'This post does not exist'})
@@ -58,12 +59,23 @@ class Details extends React.Component {
             </div>
         )
     }
+
+    componentWillUnmount(){
+        this.props.setDetailsPost(null)
+    }
 }
 
 function mapStateToProps(state){
     return {
-        postsList : state.postsList
+        postsList : state.postsList,
+        detailsPost : state.detailsPost
     }
 }
 
-export default connect(mapStateToProps)(Details);
+function mapDispatchToProps(dispatch){
+    return{
+        setDetailsPost: (post) => dispatch(actions.setDetailsPostAction(post)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Details);

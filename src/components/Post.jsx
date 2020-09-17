@@ -19,9 +19,13 @@ class Post extends React.Component{
         })
     }
 
-    handleEdit = ()=>{
-        this.props.setActivePost(this.props.element)
-    }       
+    handleDetailsPost = ()=>{
+        this.props.setDetailsPost(this.props.element)
+    }
+    
+    handleEditPost = ()=>{
+        this.props.setEditPost(this.props.element)
+    }     
 
     handleOptions = ()=>{
         this.setState({
@@ -42,12 +46,12 @@ class Post extends React.Component{
                     <Col lg='12' className=''>
                         {isToggleOn && 
                             <Row className='mt-2 d-flex justify-content-center'>
-                                <NavLink to={`/home/${this.props.element.id}`} className='text-light' >
+                                <NavLink to={`/home/${this.props.element.id}`} className='text-light' onClick={this.handleDetailsPost} >
                                     <Button variant="secondary">
                                         Details
                                     </Button>
                                 </NavLink>
-                                <NavLink to={`/editPost`} className='text-light ml-2 mr-2' onClick={this.handleEdit} >
+                                <NavLink to={`/editPost`} className='text-light ml-2 mr-2' onClick={this.handleEditPost} >
                                     <Button variant="secondary">
                                         Edit
                                     </Button>
@@ -65,7 +69,8 @@ class Post extends React.Component{
 function mapDispatchToProps(dispatch){
     return {
         deletePost: (post) => dispatch(actions.deletePostAction(post)),
-        setActivePost: (post) => dispatch(actions.setActivePostAction(post))
+        setDetailsPost: (post) => dispatch(actions.setDetailsPostAction(post)),
+        setEditPost: (post) => dispatch(actions.setEditPostAction(post))
     }
 }
 

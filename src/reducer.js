@@ -31,10 +31,14 @@ const postsReducer = (state = initialState, action) => {
                     }
                 })
             })
-        case 'SET_ACTIVE_POST':
+        case 'SET_DETAILS_POST':
             return Object.assign({}, state, {
-                activePost: action.post
+                detailsPost: action.post
             })
+        case 'SET_EDIT_POST':
+            return Object.assign({}, state, {
+                editPost: action.post
+            })            
         case 'SHOW_MORE_RESULTS':
             return Object.assign({}, state, {
                 results: state.results + action.add

@@ -20,9 +20,16 @@ const updatePostAction = (post, postPosition)=>{
     }
 }
 
-const setActivePostAction = (post)=>{
+const setDetailsPostAction = (post)=>{
     return {
-        type: 'SET_ACTIVE_POST',
+        type: 'SET_DETAILS_POST',
+        post
+    }
+}
+
+const setEditPostAction = (post)=>{
+    return {
+        type: 'SET_EDIT_POST',
         post
     }
 }
@@ -38,7 +45,8 @@ const actions = {
     addPostAction,
     deletePostAction,
     updatePostAction,
-    setActivePostAction,
+    setDetailsPostAction,
+    setEditPostAction,
     moreResultsAction
 }
 
