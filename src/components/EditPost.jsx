@@ -26,8 +26,6 @@ class EditPost extends React.Component{
     }
 
     componentDidMount(){
-        console.log(this.props)
-
         try {
             this.setState({
                 id: this.props.editPost.id,
@@ -58,7 +56,6 @@ class EditPost extends React.Component{
     }
 
     handleChange = ({target})=>{
-        console.log(target.value)
         const{ name, value } = target
         this.setState({ [name]: value })
     }
@@ -69,7 +66,6 @@ class EditPost extends React.Component{
         const { errors, send, postPosition, ...stateValues} = this.state;
         const result = validate(stateValues);
         this.setState({ errors: result });
-        console.log(stateValues)
         
         if(!Object.keys(result).length){
             Axios.put(
@@ -122,7 +118,6 @@ class EditPost extends React.Component{
 
     componentWillUnmount(){
         this.props.setEditPost(null)
-        console.log(this.props)
     }
 }
 
