@@ -6,7 +6,7 @@ export default class Header extends React.Component{
 
     render(){
         return(
-            <Navbar bg="light" expand="sm" variant='light' className='shadow mb-5' >
+            <Navbar bg="light" expand="sm" variant='light' className='shadow mb-5 sticky-top' >
                 <Navbar.Brand>Warm Up!</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse>
