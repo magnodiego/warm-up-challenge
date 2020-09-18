@@ -14,7 +14,11 @@ class Details extends React.Component {
         this.setState({loading: true})
         Axios.get(`https://jsonplaceholder.typicode.com/posts/${this.state.id}`)
         .then((res)=>{
-            this.setState({post: this.props.detailsPost})
+            if(this.props.detailsPost){
+                this.setState({post: this.props.detailsPost})
+            } else {
+                this.setState({post: res.data})
+            }
         })
         .catch((err)=>{
             if(this.props.detailsPost){
