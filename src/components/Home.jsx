@@ -31,10 +31,10 @@ class Home extends React.Component {
         const { loading } = this.state;
         return(
             <div>
-                <Jumbotron fluid>
-                    <Container>
+                <Jumbotron fluid className='bg-dark'>
+                    <Container className='text-light'>
                         <h1>Posts!</h1>
-                        <p> See all our posts </p>
+                        <p> See all our posts. </p>
                     </Container>
                 </Jumbotron>
                 {loading && 
@@ -53,7 +53,7 @@ class Home extends React.Component {
                             return null 
                         })}
                         <Col className='p-0 mb-4'>
-                            <Button block onClick={this.showMore} >Show more!</Button>
+                            <Button block onClick={this.showMore} variant='dark' >Show more!</Button>
                         </Col>
                     </Container> 
                 }

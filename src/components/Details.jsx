@@ -17,7 +17,11 @@ class Details extends React.Component {
             this.setState({post: this.props.detailsPost})
         })
         .catch((err)=>{
-            this.setState({error: 'This post does not exist'})
+            if(this.props.detailsPost){
+                this.setState({post: this.props.detailsPost})
+            } else {
+                this.setState({error: 'This post does not exist'})
+            }
         })
     }
 
@@ -29,22 +33,25 @@ class Details extends React.Component {
             <div>
                 {post &&
                     <div>
-                        <Jumbotron fluid >
-                            <Container>
-                                <h1>Post {post.id} details</h1>
+                        <Jumbotron fluid className='bg-dark' >
+                            <Container className='text-light'>
+                                <h1>Post {post.id} </h1>
+                                <p> let's see some details. </p>
                             </Container>
                         </Jumbotron>
-                        <Card className='m-2'>
-                            <Card.Body>
-                                <Card.Title> 
-                                    { post.title } 
-                                </Card.Title>
-                                <Card.Text> 
-                                    { post.body } 
-                                </Card.Text>
-                                
-                            </Card.Body>
-                        </Card>
+                        <Container>
+                            <Card className='m-2 shadow border-none'>
+                                <Card.Body>
+                                    <Card.Title> 
+                                        { post.title } 
+                                    </Card.Title>
+                                    <Card.Text> 
+                                        { post.body } 
+                                    </Card.Text>
+                                    
+                                </Card.Body>
+                            </Card>
+                        </Container>
                     </div>
                 }
                 {error &&

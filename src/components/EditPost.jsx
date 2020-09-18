@@ -82,12 +82,13 @@ class EditPost extends React.Component{
         const { errors } = this.state;
         const { send } = this.state;
         return(
-            <Container>
+            <Container className='shadow p-4'>
                 {send && 
                     <div className="alert alert-success" role="alert">
                         <h4 className="alert-heading">Post updated!</h4>
                     </div>
                 }
+                <h3 className='text-center'>Edit your post!</h3>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
                         <Form.Label>ID</Form.Label>
@@ -107,7 +108,7 @@ class EditPost extends React.Component{
                         <Form.Control as="textarea" rows="5" name='body' onChange={this.handleChange} defaultValue={ this.props.editPost ? this.props.editPost.body : ''} className={`form-control ${!errors.body ? '' : 'is-invalid' } `} />
                         {errors.body &&  <div className="invalid-feedback "> {errors.body} </div> }
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="dark" type="submit">
                         Submit
                     </Button>
                 </Form>

@@ -66,7 +66,7 @@ class CreatePost extends React.Component{
                         <Form.Control as="textarea" rows="5" name='body' onChange={this.handleChange}  className={`form-control ${!errors.body ? '' : 'is-invalid' } `} />
                         {errors.body &&  <div className="invalid-feedback "> {errors.body} </div> }
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="dark" type="submit">
                         Submit
                     </Button>
                 </Form>
