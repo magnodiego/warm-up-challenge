@@ -1,0 +1,13 @@
+.appear {
+    animation: appear 0.3s forwards linear;    
+}
+
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

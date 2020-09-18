@@ -45,7 +45,7 @@ class Post extends React.Component{
                     </Col>
                     <Col lg='12' className=''>
                         {isToggleOn && 
-                            <Row className='mt-2 d-flex justify-content-center'>
+                            <Row className='mt-2 d-flex justify-content-center appear'>
                                 <NavLink to={`/home/${this.props.element.id}`} className='text-light' onClick={this.handleDetailsPost} >
                                     <Button variant="secondary">
                                         Details
